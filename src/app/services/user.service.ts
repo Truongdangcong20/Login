@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { AuthenService } from './authen.service';
+import { User } from '../model/user.model';
 
 @Injectable({
   providedIn: 'root',
@@ -10,8 +11,7 @@ export class UserService {
   private API_URL = 'http://localhost:8000';
   private headers = new HttpHeaders();
 
-  constructor(private http: HttpClient,
-    authenService: AuthenService) {
+  constructor(private http: HttpClient, authenService: AuthenService) {
     var token = authenService.getLoggedInUser().token;
     console.log(token);
     this.headers = this.headers.set('Content-Type', 'application/json');
@@ -20,7 +20,7 @@ export class UserService {
 
   GetAll() {
     const url = `${this.API_URL}/get-all`;
-    return this.http.get(url, { headers: this.headers });
+    return this.http.get<User>(url, { headers: this.headers });
   }
 
   // addUser(user: any): Observable<any> {

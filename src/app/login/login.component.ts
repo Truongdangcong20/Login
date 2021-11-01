@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { UserLogin } from '../model/user.model';
 import { AuthenService } from '../services/authen.service';
 
 @Component({
@@ -9,9 +10,9 @@ import { AuthenService } from '../services/authen.service';
   providers: [AuthenService],
 })
 export class LoginComponent implements OnInit {
-  form: any = {
-    username: null,
-    password: null,
+  form: UserLogin = {
+    username: '',
+    password: '',
   };
 
   constructor(private authService: AuthenService, private router: Router) {}

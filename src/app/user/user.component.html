@@ -22,7 +22,7 @@
     </div>
     <div class="col-md-6" style="padding: 0;margin-bottom: 10px;">
     </div>
-
+    <label>{{userInfo.username}}</label>
     <table id="example1" class="table table-bordered table-striped">
       <thead>
         <tr>
@@ -69,12 +69,12 @@
       </div>
       <div class="modal-body">
         <form class="form-horizontal form-label-left" novalidate #addEditForm="ngForm" (ngSubmit)="saveChange()"
-          *ngIf="form">
+          *ngIf="user">
           <div class="form-group">
             <label class="control-label col-md-3 col-sm-3 col-xs-12">Tên User</label>
             <div class="col-md-9 col-sm-9 col-xs-12">
-              <input type="hidden" [(ngModel)]="form._id" name="_id" />
-              <input [readOnly]='isEdit' type="text" #username="ngModel" [(ngModel)]="form.username" required
+              <input type="hidden" [(ngModel)]="user._id" name="_id" />
+              <input [readOnly]='isEdit' type="text" #username="ngModel" [(ngModel)]="user.username" required
                 minlength="3" name="username" class="form-control">
               <small [hidden]="username.valid || (username.pristine && !addEditForm.submitted)" class="text-danger">
                 Bạn phải nhập tên ít nhất 3 ký tự
@@ -84,7 +84,7 @@
           <div class="form-group">
             <label class="control-label col-md-3 col-sm-3 col-xs-12">PassWord</label>
             <div class="col-md-9 col-sm-9 col-xs-12">
-              <input type="password" class="form-control" name="password" [(ngModel)]="form.password" required
+              <input type="password" class="form-control" name="password" [(ngModel)]="user.password" required
                 minlength="6" #password="ngModel" />
               <div class="alert alert-danger" role="alert" *ngIf="password.errors && addEditForm.submitted">
                 <div *ngIf="password.errors.required">Password is required</div>
@@ -97,7 +97,7 @@
           <div class="form-group" *ngIf="isEdit">
             <label class="control-label col-md-3 col-sm-3 col-xs-12">New PassWord</label>
             <div class="col-md-9 col-sm-9 col-xs-12">
-              <input type="password" class="form-control" name="newPass" [(ngModel)]="form.newPass" required
+              <input type="password" class="form-control" name="newPass" [(ngModel)]="user.newPass" required
                 minlength="6" #newPass="ngModel" />
               <div class="alert alert-danger" role="alert" *ngIf="newPass.errors && addEditForm.submitted">
                 <div *ngIf="newPass.errors.required">Password is required</div>
